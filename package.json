@@ -1,7 +1,17 @@
 {
   "name": "nickforddesign",
   "version": "0.1.0",
-  "private": true,
+  "description": "Website for nickforddesign.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickforddesign/nickforddesign.git"
+  },
+  "author": "Nick Ford",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickforddesign/nickforddesign/issues"
+  },
+  "homepage": "https://nickforddesign.com",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",

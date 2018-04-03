@@ -1,0 +1,12 @@
+# junk
+.DS_Store
+
+# debug
+npm-debug.log
+yarn-error.log
+
+# Node packages
+/node_modules/
+
+/coverage/
+/dist/

@@ -1,0 +1,22 @@
+version: "3.0"
+services:
+  nfd_frontend:
+    build: .
+    image: nfd_frontend
+    container_name: nfd_frontend
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - frontend_data:/app/dist
+    ports:
+      - 6666:8080
+    command: npm run build
+
+volumes:
+  nfd_frontend_data:
+    external: true
+
+# networks:
+#   default:
+#     external:
+#       name: rafipayment_network
