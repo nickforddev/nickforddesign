@@ -6,15 +6,7 @@ RUN apt-get -y install npm
 
 RUN npm i -g npm
 
-RUN npm -v
-
-# RUN npm cache verify
-
-# WORKDIR /app
-
 ADD package.json ./
-
-# RUN mkdir -p ./dist
 
 RUN npm install
 
