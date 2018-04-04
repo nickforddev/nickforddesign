@@ -4,9 +4,17 @@ RUN apt-get -y update && apt-get -y upgrade
 
 RUN apt-get -y install npm
 
-WORKDIR /app
+RUN npm i -g npm
+
+RUN npm -v
+
+# RUN npm cache verify
+
+# WORKDIR /app
 
 ADD package.json ./
+
+# RUN mkdir -p ./dist
 
 RUN npm install
 
