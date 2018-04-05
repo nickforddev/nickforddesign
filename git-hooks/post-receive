@@ -1,4 +1,3 @@
 #!/bin/sh
-echo "hook is running"
 git --work-tree=/nickforddesign/frontend --git-dir=/nickforddesign/frontend/.git checkout -f
 docker-compose -f ../docker-compose.production.yml up --build
