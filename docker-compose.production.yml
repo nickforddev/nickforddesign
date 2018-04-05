@@ -15,8 +15,3 @@ services:
 volumes:
   nfd_frontend_data:
     external: true
-
-# networks:
-#   default:
-#     external:
-#       name: nfd_network

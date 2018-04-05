@@ -11,14 +11,7 @@ services:
     ports:
       - 6666:8080
     command: ./build.sh
-    # command: npm run build
-    # command: tail -f /dev/null
 
 volumes:
   nfd_frontend_data:
     external: true
-
-# networks:
-#   default:
-#     external:
-#       name: nfd_network

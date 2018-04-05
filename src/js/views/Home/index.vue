@@ -1,11 +1,7 @@
 <template>
   <div class="home">
     <logo />
-    <readout />
-    <div class="links">
-      <github-link />
-      <linkedin-link />
-    </div>
+    <readout :message="message" />
   </div>
 </template>
 
@@ -13,17 +9,26 @@
 
 <script>
 import Logo from '@/components/Logo'
-import Readout from './Readout'
-import GithubLink from './GithubLink'
-import LinkedinLink from './LinkedinLink'
+import Readout from '@/components/Readout'
+
+const message = `I'm a software developer
+and graphic designer
+from Boston, MA.
+ 
+I love working with
+node.js,
+vue,
+webpack
+`
 
 export default {
   name: 'home',
+  computed: {
+    message: () => message
+  },
   components: {
     Logo,
-    Readout,
-    GithubLink,
-    LinkedinLink
+    Readout
   }
 }
 </script>
@@ -31,11 +36,6 @@ export default {
 <!--/////////////////////////////////////////////////////////////////////////-->
 
 <style lang="scss">
-@import '~%/colors';
-
-.home {
-  color: $color-highlight;
-}
 .logo {
   position: fixed;
   width: 200px;
@@ -43,30 +43,4 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.links {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-
-  & > div {
-    display: inline-block;
-    height: 30px;
-    width: 30px;
-    margin-right: 10px;
-  }
-}
-// .github-link {
-//   position: fixed;
-//   height: 30px;
-//   width: 30px;
-//   bottom: 20px;
-//   left: 20px;
-// }
-// .linkedin-link {
-//   position: fixed;
-//   height: 30px;
-//   width: 30px;
-//   bottom: 20px;
-//   left: 20px;
-// }
 </style>

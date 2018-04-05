@@ -4,8 +4,24 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  // text-align: center;
   color: #2c3e50;
+}
+
+a {
+  color: $color-text-dark;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    color: $color-text-dark;
+    text-decoration: none;
+  }
 }
 
 ::selection {
@@ -17,14 +33,9 @@ mark {
   background: $color-text-dark;
   color: $color-text-light;
   padding: 2px 0;
+
+  a {
+    color: $color-text-light;
+  }
 }
-// #nav {
-//   padding: 30px;
-//   a {
-//     font-weight: bold;
-//     color: #2c3e50;
-//     &.router-link-exact-active {
-//       color: #42b983;
-//     }
-//   }
-// }
+
