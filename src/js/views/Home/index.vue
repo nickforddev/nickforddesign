@@ -1,7 +1,11 @@
 <template>
   <div class="home">
     <logo />
-    <github-link />
+    <readout />
+    <div class="links">
+      <github-link />
+      <linkedin-link />
+    </div>
   </div>
 </template>
 
@@ -9,13 +13,17 @@
 
 <script>
 import Logo from '@/components/Logo'
+import Readout from './Readout'
 import GithubLink from './GithubLink'
+import LinkedinLink from './LinkedinLink'
 
 export default {
   name: 'home',
   components: {
     Logo,
-    GithubLink
+    Readout,
+    GithubLink,
+    LinkedinLink
   }
 }
 </script>
@@ -35,11 +43,30 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.github-link {
+.links {
   position: fixed;
-  height: 30px;
-  width: 30px;
   bottom: 20px;
   left: 20px;
+
+  & > div {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+  }
 }
+// .github-link {
+//   position: fixed;
+//   height: 30px;
+//   width: 30px;
+//   bottom: 20px;
+//   left: 20px;
+// }
+// .linkedin-link {
+//   position: fixed;
+//   height: 30px;
+//   width: 30px;
+//   bottom: 20px;
+//   left: 20px;
+// }
 </style>

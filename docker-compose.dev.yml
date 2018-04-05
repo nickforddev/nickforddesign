@@ -7,10 +7,12 @@ services:
     environment:
       - NODE_ENV=development
     volumes:
-      - nfd_frontend_data:/app/dist
+      - nfd_frontend_data:/dist
     ports:
       - 6666:8080
-    command: npm run build
+    command: ./build.sh
+    # command: npm run build
+    # command: tail -f /dev/null
 
 volumes:
   nfd_frontend_data:
