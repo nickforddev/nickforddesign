@@ -43,7 +43,16 @@ export default {
       this.$emit('complete')
     },
     appendNext() {
-      this.output += this.message[this.current++]
+      let next = this.message[this.current]
+      let inc = 1
+      if (next === '<') {
+        let remaining = this.message.substring(this.current, this.message.length)
+        const regex = new RegExp(`(?<=<)(.*?)(?=>)`, 'gi')
+        next = `<${remaining.match(regex)[0]}>`
+        inc = next.length
+      }
+      this.output += next
+      this.current += inc
     }
   }
   // components: {
