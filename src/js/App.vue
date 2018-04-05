@@ -5,20 +5,32 @@
       <github-link />
       <linkedin-link />
     </div>
+    <maze v-if="ten_print" />
   </div>
 </template>
 
 <!--/////////////////////////////////////////////////////////////////////////-->
 
 <script>
+import { mapGetters } from 'vuex'
 import GithubLink from '@/components/GithubLink'
 import LinkedinLink from '@/components/LinkedinLink'
+import Maze from '@/components/Maze'
 
 export default {
   name: 'app',
+  computed: {
+    ten_print() {
+      return this.user_input.endsWith('tenprint')
+    },
+    ...mapGetters({
+      user_input: 'input'
+    })
+  },
   components: {
     GithubLink,
-    LinkedinLink
+    LinkedinLink,
+    Maze
   }
 }
 </script>

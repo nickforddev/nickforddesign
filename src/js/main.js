@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-// import store from './store'
+import store from './store'
 
 import Tooltip from '@/components/Tooltip'
 
@@ -22,6 +22,11 @@ components.map(component => {
 
 new Vue({
   router,
-  // store,
-  render: h => h(App)
+  store,
+  render: h => h(App),
+  mounted() {
+    window.addEventListener('keypress', e => {
+      this.$store.dispatch('key_pressed', e)
+    })
+  }
 }).$mount('#app')
