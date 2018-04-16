@@ -9,11 +9,6 @@ import { sleep } from '@/utils'
 
 export default {
   name: 'maze',
-  // data() {
-  //   return {
-  //     output: ''
-  //   }
-  // },
   mounted() {
     this.start()
   },
@@ -42,11 +37,9 @@ export default {
   margin: 0;
   font-size: 22px;
   line-height: 22px;
-  // background: #4a406d;
   color: #876de8;
   width: 105%;
   word-break: break-all;
   overflow-x: hidden;
-  // background: red;
 }
 </style>

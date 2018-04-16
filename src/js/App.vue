@@ -3,9 +3,11 @@
     <router-view />
     <div class="links">
       <github-link />
+      <codepen-link />
       <linkedin-link />
     </div>
     <maze v-if="ten_print" />
+    <snakes v-if="snakes" />
   </div>
 </template>
 
@@ -15,13 +17,18 @@
 import { mapGetters } from 'vuex'
 import GithubLink from '@/components/GithubLink'
 import LinkedinLink from '@/components/LinkedinLink'
+import CodepenLink from '@/components/CodepenLink'
 import Maze from '@/components/Maze'
+import Snakes from '@/components/Snakes'
 
 export default {
   name: 'app',
   computed: {
     ten_print() {
       return this.user_input.endsWith('tenprint')
+    },
+    snakes() {
+      return this.user_input.endsWith('snakes')
     },
     ...mapGetters({
       user_input: 'input'
@@ -30,7 +37,9 @@ export default {
   components: {
     GithubLink,
     LinkedinLink,
-    Maze
+    CodepenLink,
+    Maze,
+    Snakes
   }
 }
 </script>
