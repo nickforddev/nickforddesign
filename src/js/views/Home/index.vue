@@ -15,9 +15,11 @@ const message = `I'm a software developer
 and graphic designer
 from Boston, MA.
  
-I love working with
+i ❤ working with:
 node.js,
 vue,
+react,
+scss,
 webpack
 `
 

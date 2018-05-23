@@ -5,8 +5,7 @@
 <!--/////////////////////////////////////////////////////////////////////////-->
 
 <script>
-import { sleep } from '@/utils'
-
+// import { sleep } from '@/utils'
 export default {
   name: 'snakes',
   async mounted() {
@@ -55,7 +54,6 @@ export default {
         ctx.fillRect(dx2, dy, size, size)
         requestAnimationFrame(update)
       }
-
       requestAnimationFrame(update)
     }
   }
@@ -74,6 +72,5 @@ export default {
   z-index: -1;
   width: 100%;
   height: 100%;
-    // background: #121212;
 }
 </style>
