@@ -2,6 +2,7 @@ const path = require('path')
 
 module.exports = {
   lintOnSave: true,
+  runtimeCompiler: true,
   chainWebpack: config => {
     config.entry('app')
       .clear()

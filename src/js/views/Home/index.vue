@@ -8,41 +8,24 @@
 <!--/////////////////////////////////////////////////////////////////////////-->
 
 <script>
-import Logo from '@/components/Logo'
-import Readout from '@/components/Readout'
-
-const message = `I'm a software developer
-and graphic designer
+const message = `I'm a software engineer
 from Boston, MA.
  
 i ❤ working with:
+javascript,
 node.js,
 vue,
-react,
 scss,
-webpack
+webpack,
+docker
+
+<router-link to="/demo">see a fun demo</router-link>
 `
 
 export default {
   name: 'home',
   computed: {
     message: () => message
-  },
-  components: {
-    Logo,
-    Readout
   }
 }
 </script>
-
-<!--/////////////////////////////////////////////////////////////////////////-->
-
-<style lang="scss">
-.logo {
-  position: fixed;
-  width: 200px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-</style>

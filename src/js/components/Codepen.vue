@@ -30,9 +30,7 @@ export default {
 <!--/////////////////////////////////////////////////////////////////////////-->
 
 <style scoped lang="scss">
-@import '~%/colors';
-
 .codepen {
-  fill: $color-text-dark;
+  fill: currentColor;
 }
 </style>

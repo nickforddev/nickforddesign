@@ -10,36 +10,17 @@
 <!--/////////////////////////////////////////////////////////////////////////-->
 
 <script>
-import Logo from '@/components/Logo'
-import Readout from '@/components/Readout'
-
 const message = `404
 You tried to access
 a page that doesn't exist
  
-<a href="/">go home</a>
+<router-link to="/">go home</router-link>
 `
 
 export default {
   name: 'home',
   computed: {
     message: () => message
-  },
-  components: {
-    Logo,
-    Readout
   }
 }
 </script>
-
-<!--/////////////////////////////////////////////////////////////////////////-->
-
-<style lang="scss">
-.logo {
-  position: fixed;
-  width: 200px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-</style>

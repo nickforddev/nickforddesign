@@ -18,9 +18,7 @@ export default {
 <!--/////////////////////////////////////////////////////////////////////////-->
 
 <style scoped lang="scss">
-@import '~%/colors';
-
 .linkedin {
-  fill: $color-text-dark;
+  fill: currentColor;
 }
 </style>

@@ -14,6 +14,13 @@ export default new Router({
       }
     },
     {
+      path: '/demo',
+      name: 'demo',
+      component: resolve => {
+        require(['@/views/demo'], resolve)
+      }
+    },
+    {
       path: '*',
       name: '404',
       component: resolve => {

@@ -1,6 +1,6 @@
 <template>
   <div class="readout">
-    <pre><mark v-html="output"></mark></pre>
+    <component :is="transformed" />
     <!-- <repl v-if="complete" /> -->
   </div>
 </template>
@@ -26,8 +26,19 @@ export default {
   data() {
     return {
       output: '',
+      prev: null,
       current: 0,
-      complete: false
+      complete: false,
+      startOfLine: true,
+      isExpressionInput: false,
+      expression: null
+    }
+  },
+  computed: {
+    transformed() {
+      return {
+        template: `<pre><mark>${this.output}</mark></pre>`
+      }
     }
   },
   mounted() {
@@ -43,16 +54,36 @@ export default {
       this.$emit('complete')
     },
     appendNext() {
-      let next = this.message[this.current]
+      const msg = this.message
+      const cur = this.current
+      if (cur >= 4) {
+        if (`${msg[cur - 3]}${msg[cur - 2]}${msg[cur - 1]}` === '\n> ') {
+          this.isExpressionInput = true
+          this.expression = ''
+        }
+        if (this.isExpressionInput) {
+          if (msg[cur] === '\n' || msg[cur + 1] === undefined) {
+            this.evaluate(this.expression)
+          } else {
+            this.expression += msg[cur]
+          }
+        }
+      }
+      let next = msg[this.current]
       let inc = 1
       if (next === '<') {
-        let remaining = this.message.substring(this.current, this.message.length)
+        let remaining = msg.substring(this.current, msg.length)
         const regex = new RegExp(`(?<=<)(.*?)(?=>)`, 'gi')
         next = `<${remaining.match(regex)[0]}>`
         inc = next.length
       }
       this.output += next
       this.current += inc
+      this.prev = this.current && this.current - 1
+    },
+    evaluate(expression) {
+      eval(expression) // eslint-disable-line
+      this.expression = null
     }
   }
   // components: {
@@ -67,8 +98,10 @@ export default {
 @import '~%/colors';
 
 .readout {
+  position: relative;
   font-family: monospace;
   padding: 20px;
   user-select: none;
+  z-index: 1;
 }
 </style>
