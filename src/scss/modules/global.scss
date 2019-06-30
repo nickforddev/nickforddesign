@@ -33,6 +33,10 @@ a {
   color: $color-text-light;
 }
 
+pre {
+  display: block;
+}
+
 mark {
   background: $color-text-dark;
   color: $color-text-light;
@@ -41,5 +45,9 @@ mark {
   a {
     color: $color-text-light;
   }
+}
+
+svg {
+  transform: rotate(0deg);
 }
 

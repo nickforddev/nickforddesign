@@ -1,7 +1,6 @@
 <template>
   <div class="readout">
     <component :is="transformed" />
-    <!-- <repl v-if="complete" /> -->
   </div>
 </template>
 
@@ -9,7 +8,9 @@
 
 <script>
 import { sleep } from '@/utils'
-// import Repl from '@/components/Repl'
+
+const PROMPT_REGEX = /^\>\s?/gi
+const FORMAT_REGEX = /\[(.*?)\]/gi
 
 export default {
   name: 'readout',
@@ -25,19 +26,25 @@ export default {
   },
   data() {
     return {
-      output: '',
-      prev: null,
-      current: 0,
+      lines: this.message.split('\n'),
+      outputLines: [],
       complete: false,
-      startOfLine: true,
-      isExpressionInput: false,
-      expression: null
     }
   },
   computed: {
     transformed() {
       return {
-        template: `<pre><mark>${this.output}</mark></pre>`
+        template: `
+        <div>
+          ${this.outputLines.map(line => {
+            return `<pre v-highlightjs>${
+              line instanceof Object
+                ? `${line.start}${line.body}${line.end}`
+                : line
+            }</pre>`
+          }).join('\n')}
+        </div>
+        `
       }
     }
   },
@@ -46,55 +53,82 @@ export default {
   },
   methods: {
     async start() {
-      while (this.current < this.message.length) {
-        await sleep(this.speed)
-        this.appendNext()
-      }
+      await this.typeLines();
       this.complete = true
       this.$emit('complete')
     },
-    appendNext() {
-      const msg = this.message
-      const cur = this.current
-      if (cur >= 4) {
-        if (`${msg[cur - 3]}${msg[cur - 2]}${msg[cur - 1]}` === '\n> ') {
-          this.isExpressionInput = true
-          this.expression = ''
-        }
-        if (this.isExpressionInput) {
-          if (msg[cur] === '\n' || msg[cur + 1] === undefined) {
-            this.evaluate(this.expression)
-          } else {
-            this.expression += msg[cur]
-          }
-        }
+    async typeLines() {
+      for (const index in this.lines) {
+        await this.handleLine(index)
       }
-      let next = msg[this.current]
-      let inc = 1
-      if (next === '<') {
-        let remaining = msg.substring(this.current, msg.length)
-        const regex = new RegExp(`(?<=<)(.*?)(?=>)`, 'gi')
-        next = `<${remaining.match(regex)[0]}>`
-        inc = next.length
+    },
+    async handleLine(index) {
+      const line = this.lines[index]
+      if (line.match(PROMPT_REGEX)) {
+        await this.typeCodeLine(line, index)
+      } else {
+        await this.typeNormalLine(line, index)
       }
-      this.output += next
-      this.current += inc
-      this.prev = this.current && this.current - 1
+    },
+    async typeNormalLine(line, index) {
+      this.outputLines.push({
+        start: '<mark>',
+        body: '',
+        end: '</mark>'
+      })
+      await this.typeLine(line, index)
+    },
+    async typeCodeLine(line, index) {
+      const promptFormatMeta = line.match(FORMAT_REGEX)
+      const customFormat = promptFormatMeta && promptFormatMeta[0]
+      const format = customFormat
+        ? customFormat.substring(1, customFormat.length - 1)
+        : 'javascript'
+      this.outputLines.push({
+        start: `<code class="${format}">`,
+        body: '',
+        end: '</code>'
+      })
+      let expression = line.replace(PROMPT_REGEX, '')
+      if (customFormat) {
+        expression = expression.replace(customFormat + ' ', '')
+      }
+      await this.typeLine(expression, index)
+      if (format === 'javascript') {
+        this.evaluate(expression)
+      }
+    },
+    async typeLine(line, index, property = 'body') {
+      const target = property
+        ? this.outputLines[index]
+        : this.outputLines
+      const path = property
+        ? property
+        : index
+      for (let i = 0; i < line.length; i++) {
+        const char = line[i]
+        let next = char
+        if (char === '<') {
+          const remaining = line.substring(i, line.length)
+          const regex = new RegExp(`(?<=<)(.*?)(?=>)`, 'gi')
+          next = `<${remaining.match(regex)[0]}>`
+          i += next.length - 1
+        }
+        this.$set(target, path, target[path] + next)
+        await sleep(this.speed)
+        await this.$nextTick()
+      }
     },
     evaluate(expression) {
       eval(expression) // eslint-disable-line
-      this.expression = null
     }
   }
-  // components: {
-  //   Repl
-  // }
 }
 </script>
 
 <!--/////////////////////////////////////////////////////////////////////////-->
 
-<style scoped lang="scss">
+<style lang="scss">
 @import '~%/colors';
 
 .readout {
@@ -103,5 +137,13 @@ export default {
   padding: 20px;
   user-select: none;
   z-index: 1;
+
+  .hljs {
+    position: relative;
+    display: inline-block;
+    line-height: 8px;
+    margin-bottom: -4px;
+    background: $color-text-dark;
+  }
 }
 </style>

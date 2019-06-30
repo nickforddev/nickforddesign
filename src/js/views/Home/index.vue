@@ -18,8 +18,8 @@ vue,
 scss,
 webpack,
 docker
-
-<router-link to="/demo">see a fun demo</router-link>
+ 
+<router-link to="/demo">want to see my skills?</router-link>
 `
 
 export default {
