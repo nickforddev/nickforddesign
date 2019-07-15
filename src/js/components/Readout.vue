@@ -9,7 +9,7 @@
 <script>
 import { sleep } from '@/utils'
 
-const PROMPT_REGEX = /^\>\s?/gi
+const PROMPT_REGEX = /^>\s?/gi
 const FORMAT_REGEX = /\[(.*?)\]/gi
 
 export default {
@@ -28,7 +28,7 @@ export default {
     return {
       lines: this.message.split('\n'),
       outputLines: [],
-      complete: false,
+      complete: false
     }
   },
   computed: {
@@ -36,13 +36,7 @@ export default {
       return {
         template: `
         <div>
-          ${this.outputLines.map(line => {
-            return `<pre v-highlightjs>${
-              line instanceof Object
-                ? `${line.start}${line.body}${line.end}`
-                : line
-            }</pre>`
-          }).join('\n')}
+          ${this.outputLines.map(line => `<pre v-highlightjs>${`${line.start}${line.body}${line.end}`}</pre>`).join('\n')}
         </div>
         `
       }
@@ -53,7 +47,7 @@ export default {
   },
   methods: {
     async start() {
-      await this.typeLines();
+      await this.typeLines()
       this.complete = true
       this.$emit('complete')
     },
@@ -102,9 +96,7 @@ export default {
       const target = property
         ? this.outputLines[index]
         : this.outputLines
-      const path = property
-        ? property
-        : index
+      const path = property || index
       for (let i = 0; i < line.length; i++) {
         const char = line[i]
         let next = char

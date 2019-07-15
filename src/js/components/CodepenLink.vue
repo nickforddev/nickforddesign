@@ -2,7 +2,7 @@
   <div class="codepen-link">
     <div class="container">
       <a
-        href="https://codepen.io/nickforddesign/pens/public/"
+        href="https://codepen.io/nickforddesign/"
         target="_blank"
         @mouseover="onEnter"
         @mouseleave="onLeave"
