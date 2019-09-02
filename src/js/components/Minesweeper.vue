@@ -21,8 +21,12 @@
       <button @click="startNewGame">Play Again</button>
     </div>
     <div class="footer">
-      <!-- <button @click="reset">Stop</button> -->
-      <router-link to="/">Go Home</router-link>
+      <router-link
+        v-if="$route.path !== '/'"
+        to="/"
+      >
+        Go Home
+      </router-link>
     </div>
   </div>
 </template>
@@ -170,10 +174,10 @@ export default {
       ]).map(tuple => {
         return [tuple[0] + row, tuple[1] + col]
       }).filter(item => {
-        return item[0] > -1
-          && item[1] > -1
-          && item[0] < this.matrix.length
-          && item[1] < this.matrix[0].length
+        return item[0] > -1 &&
+          item[1] > -1 &&
+          item[0] < this.matrix.length &&
+          item[1] < this.matrix[0].length
       })
     },
     getSurroundingsCount(coords) {

@@ -17,9 +17,15 @@ node.js,
 vue,
 scss,
 webpack,
-docker
+docker,
+linux,
+etc
  
-<router-link to="/demo">want to see my skills?</router-link>
+try typing "snakes", "tenprint", or "minesweeper"
+to see some demos...
+ 
+<router-link to="/demo">or click here to see some skills</router-link>
+
 `
 
 export default {
