@@ -21,6 +21,13 @@ export default new Router({
       }
     },
     {
+      path: '/minesweeper',
+      name: 'minesweeper',
+      component: resolve => {
+        require(['@/views/minesweeper'], resolve)
+      }
+    },
+    {
       path: '*',
       name: '404',
       component: resolve => {

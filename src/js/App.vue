@@ -8,6 +8,7 @@
     </div>
     <maze v-if="ten_print" />
     <snakes v-if="snakes" />
+    <minesweeper v-if="minesweeper" />
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import LinkedinLink from '@/components/LinkedinLink'
 import CodepenLink from '@/components/CodepenLink'
 import Maze from '@/components/Maze'
 import Snakes from '@/components/Snakes'
+import Minesweeper from '@/components/Minesweeper'
 
 export default {
   name: 'app',
@@ -30,6 +32,9 @@ export default {
     snakes() {
       return this.user_input.endsWith('snakes')
     },
+    minesweeper() {
+      return this.user_input.endsWith('minesweeper')
+    },
     ...mapGetters({
       user_input: 'input'
     })
@@ -39,7 +44,8 @@ export default {
     LinkedinLink,
     CodepenLink,
     Maze,
-    Snakes
+    Snakes,
+    Minesweeper
   }
 }
 </script>
