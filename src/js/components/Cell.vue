@@ -3,9 +3,15 @@
     <button
       class="cell-btn"
       :class="cellClass"
+      @click.right.prevent="toggleFlag"
       @click="emitClick"
     >
-      {{ data.cell }}
+      <span v-if="flagged">
+        🚩
+      </span>
+      <span v-else>
+        {{ data.cell }}
+      </span>
     </button>
   </div>
 </template>
@@ -18,9 +24,17 @@ export default {
   props: {
     data: Object
   },
+  data() {
+    return {
+      flagged: false
+    }
+  },
   computed: {
     cellClass() {
-      const classes = [this.data.cell !== ' ' && 'checked']
+      const classes = [
+        this.flagged && 'flagged',
+        this.data.cell !== ' ' && 'checked'
+      ]
       switch (this.data.cell) {
         case 1:
           classes.push('blue')
@@ -53,12 +67,19 @@ export default {
     }
   },
   methods: {
+    toggleFlag() {
+      if (this.data.cell === ' ') {
+        this.flagged = !this.flagged
+      }
+    },
     emitClick(e) {
-      this.$emit('click', {
-        row: this.data.row_index,
-        col: this.data.cell_index
-      })
-      this.checked = true
+      if (!this.flagged) {
+        this.$emit('click', {
+          row: this.data.row_index,
+          col: this.data.cell_index
+        })
+        this.checked = true
+      }
     }
   }
 }
@@ -76,6 +97,12 @@ export default {
       border-color: #cdcdcd;
       border-width: 1px;
       transition: none;
+    }
+
+    &.flagged {
+      &:active {
+        border-style: outset;
+      }
     }
 
     &.blue {

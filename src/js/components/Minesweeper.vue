@@ -83,6 +83,8 @@ export default {
       this.matrix = null
     },
     async startNewGame() {
+      this.grid = []
+      await this.$nextTick()
       this.rows = Math.floor((window.innerHeight - 75) / CELL_SIZE)
       this.cols = Math.floor(window.innerWidth / CELL_SIZE)
       this.grid = this.generateMatrix(this.rows, this.cols)
