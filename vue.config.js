@@ -3,6 +3,9 @@ const path = require('path')
 module.exports = {
   lintOnSave: true,
   runtimeCompiler: true,
+  configureWebpack: {
+    devtool: process.env.NODE_ENV === 'development' ? 'eval-source-map' : false
+  },
   chainWebpack: config => {
     config.entry('app')
       .clear()
