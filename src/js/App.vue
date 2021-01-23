@@ -9,6 +9,33 @@
     <maze v-if="ten_print" />
     <snakes v-if="snakes" />
     <minesweeper v-if="minesweeper" />
+    <div class="demos">
+      <div>
+        <span>some projects:</span>
+      </div>
+      <div>
+        <a href="https://github.com/ctrl-freaks/freezeframe.js">
+          freezeframe
+        </a>
+      </div>
+      <div
+        v-for="(name, index) in ['snakes', 'tenprint', 'minesweeper']"
+        :key="index"
+      >
+        <a
+          href="#"
+          @click.prevent="input(name)"
+        >
+          {{ name }}
+        </a>
+      </div>
+      <a href="/foo.html">
+        pico-8 demo
+      </a>
+      <div>
+        <router-link to="/demo">dumb demo</router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -38,6 +65,11 @@ export default {
     ...mapGetters({
       user_input: 'input'
     })
+  },
+  methods: {
+    input(str) {
+      this.$store.state.input = str
+    }
   },
   components: {
     GithubLink,
@@ -73,6 +105,23 @@ export default {
     height: 30px;
     width: 30px;
     margin-right: 10px;
+  }
+}
+.demos {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  text-align: right;
+  font-family: monospace;
+
+  a, span {
+    color: $color-text-light;
+    background: $color-text-dark;
+  }
+
+  span {
+    display: block;
+    margin-bottom: 20px;
   }
 }
 </style>
