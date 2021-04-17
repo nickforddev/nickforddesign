@@ -4,6 +4,7 @@
       <a
         href="https://www.linkedin.com/in/nick-ford-19128653/"
         target="_blank"
+        rel="nofollow"
         @mouseover="onEnter"
         @mouseleave="onLeave"
         >

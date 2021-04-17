@@ -14,8 +14,13 @@
         <span>some projects:</span>
       </div>
       <div>
-        <a href="https://github.com/ctrl-freaks/freezeframe.js">
+        <a href="https://github.com/ctrl-freaks/freezeframe.js" target="_blank" rel="nofollow">
           freezeframe
+        </a>
+      </div>
+      <div>
+        <a href="https://github.com/nickforddesign/vuebersicht" target="_blank" rel="nofollow">
+          vuebersicht
         </a>
       </div>
       <div
@@ -29,11 +34,11 @@
           {{ name }}
         </a>
       </div>
-      <a href="/foo.html">
-        pico-8 demo
+      <a href="/pico.html">
+        pico-8 demo (lua)
       </a>
       <div>
-        <router-link to="/demo">dumb demo</router-link>
+        <router-link to="/demo">another demo</router-link>
       </div>
     </div>
   </div>

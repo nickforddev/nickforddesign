@@ -4,6 +4,7 @@
       <a
         href="https://github.com/nickforddesign"
         target="_blank"
+        rel="nofollow"
         @mouseover="onEnter"
         @mouseleave="onLeave"
         >

@@ -4,6 +4,7 @@
       <a
         href="https://codepen.io/nickforddesign/"
         target="_blank"
+        rel="nofollow"
         @mouseover="onEnter"
         @mouseleave="onLeave"
         >

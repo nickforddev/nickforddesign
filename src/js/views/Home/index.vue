@@ -21,6 +21,7 @@ webpack,
 docker,
 linux,
 ruby/rails,
+aws,
 and many other tools
  
 try typing "snakes", "tenprint", or "minesweeper"
