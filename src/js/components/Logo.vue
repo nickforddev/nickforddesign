@@ -1,6 +1,17 @@
 <template>
   <div class="logo">
-    <svg viewBox="0 0 224 224">
+    <svg viewBox="0 0 224 224" filter="url(#dropshadow)">
+      <filter xmlns="http://www.w3.org/2000/svg" id="dropshadow" height="130%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="0"></feGaussianBlur>
+        <feOffset result="offsetblur" dx="-3" dy="3"></feOffset>
+        <feComponentTransfer>
+          <feFuncA type="linear" slope="0.2"></feFuncA>
+        </feComponentTransfer>
+        <feMerge>
+          <feMergeNode></feMergeNode>
+          <feMergeNode in="SourceGraphic"></feMergeNode>
+        </feMerge>
+      </filter>
       <path d="M111.997,5.819C53.357,5.819,5.819,53.357,5.819,112c0,58.645,47.539,106.182,106.178,106.182
         c58.644,0,106.185-47.541,106.185-106.182C218.182,53.357,170.641,5.819,111.997,5.819z M142.266,32.92l6.629-0.002
         c4.894,0,8.865,3.967,8.865,8.859c0,0.034-0.004,0.06-0.004,0.091h0.004v56.921h-0.006v1.54c0,2.81,2.242,5.095,5.031,5.167v0.003
