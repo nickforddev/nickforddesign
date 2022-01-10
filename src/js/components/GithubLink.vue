@@ -2,7 +2,7 @@
   <div class="github-link">
     <div class="container">
       <a
-        href="https://github.com/nickforddesign"
+        href="https://github.com/nickforddev"
         target="_blank"
         rel="nofollow"
         @mouseover="onEnter"
